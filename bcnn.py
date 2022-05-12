@@ -157,32 +157,34 @@ def r2_s(y_test, y_pred):
     r2 = 1 - mse_test / var
     return r2
 
-# def plot_regression(y_, result, avg_r, avg_mae):
-#     axismin, axismax = 60, 90
-#     y_ = np.array(y_)
-#     result = np.array(result)
-#     [k, b] = np.polyfit(y_, result.reshape(-1, 1), 1)               #计算斜率和截距
-#     # print(k, b)
-#     x_axis = np.linspace(axismin + 0.05 * axismax, axismax * 0.95, 69696)
-#     # y_pred = model_regress.predict(x_axis)
-#     y_axis = k * x_axis + b
-#     y_regress = np.polyval([k, b], x_axis)
+def plot_regression(y_, result, avg_r, avg_mae):
 
-#     plt.figure()
-#     plt.scatter(y_, result, c='green', marker='o')
+    axismin, axismax = 60, 90
+    y_ = np.array(y_)
+    result = np.array(result)
+    [k, b] = np.polyfit(y_, result.reshape(-1, 1), 1)               #计算斜率和截距
+    # print(k, b)
+    x_axis = np.linspace(axismin + 0.01 * axismax, axismax * 0.99, 69696)
+    # y_pred = model_regress.predict(x_axis)
+    y_axis = k * x_axis + b
+    y_regress = np.polyval([k, b], x_axis)
 
-#     plt.plot(x_axis, y_regress, 'r-', label='output fit line', lw=3.0)
-#     # # ax = seaborn.regplot(x=result, y=y_, ci=90)
-#     plt.xlim(axismin, axismax)
-#     plt.ylim(axismin, axismax)
-#     plt.text(1, 43, 'R={:.2f}'.format(avg_r), fontweight='bold')
-#     plt.text(1, 41, 'MAE={:.2f}'.format(avg_mae), fontweight='bold')
-#     plt.title("BrainNetCNN Age Regression with Dcor")
-#     plt.ylabel('Predicted age')
-#     plt.xlabel('Ground-Truth age')
-#     plt.legend(loc='upper left')
-#     savename = 'BCNN_age_dCor_NKI.jpg'
-#     plt.savefig(savename)
+    plt.figure()
+    plt.scatter(y_, result, c='none', marker='o',edgecolors='k', s=10)
+
+
+    plt.plot(x_axis, y_regress, 'r-', label='output fit line', lw=3.0)
+    # # ax = seaborn.regplot(x=result, y=y_, ci=90)
+    plt.xlim(axismin, axismax)
+    plt.ylim(axismin, axismax)
+    plt.text(84, 89, 'R={:.3f}'.format(avg_r), fontweight='bold')
+    plt.text(84, 88, 'MAE={:.3f}'.format(avg_mae), fontweight='bold')
+    plt.xlabel('Actual age')
+    plt.ylabel('Predicted age')
+    plt.title('Age Regression')
+    plt.legend(loc='upper left')
+    savename = 'BCNN_age_dCor_NKI.jpg'
+    plt.savefig(savename)
 
 
 
@@ -367,7 +369,7 @@ if __name__ ==  '__main__':
     # res_sum = np.sum(r_sum,axis=0) / KFolds
     # with open('/DATA/mahao_data/CamCAN/code/plot_txt/BCNN_age_dCor_NKI.txt', 'a') as f:
     #     f.write(str(res_sum))
-    # plot_regression(label_arr, res_arr, sum_r/KFolds, sum_mae/KFolds)
+    plot_regression(label_arr, res_arr, sum_r/KFolds, sum_mae/KFolds)
     print('avg_r:{:.6f}'.format(sum_r / (KFolds-count)))
     print('avg_r2:{:.6f}'.format(sum_r2 / (KFolds-count)))
     print('avg_mae:{:.6f}'.format(sum_mae / (KFolds-count)))
