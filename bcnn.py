@@ -183,8 +183,8 @@ def plot_regression(y_, result, avg_r, avg_mae):
     plt.ylabel('Predicted age')
     plt.title('Age Regression')
     plt.legend(loc='upper left')
-    savename = 'BCNN_age_dCor_NKI.jpg'
-    plt.savefig(savename)
+#     savename = 'BCNN_age_dCor_NKI.jpg'
+    plt.savefig('/vc_data/users/t-zilongwang/bcnn.png')
 
 
 
@@ -374,12 +374,12 @@ if __name__ ==  '__main__':
     print('avg_r2:{:.6f}'.format(sum_r2 / (KFolds-count)))
     print('avg_mae:{:.6f}'.format(sum_mae / (KFolds-count)))
 
-    plt.plot([60,90],[60,90],linestyle='-',color='k')
-    plt.xlim([60,90])
-    plt.ylim([60,90])
-    plt.xlabel('Actual Value')
-    plt.ylabel('Predicted Value')
-    plt.title('Scatter plot')
-    # plt.legend(loc='lower right')
-    # plt.show()  
-    plt.savefig('/vc_data/users/t-zilongwang/bcnn.png') # -----(2)
+#     plt.plot([60,90],[60,90],linestyle='-',color='k')
+#     plt.xlim([60,90])
+#     plt.ylim([60,90])
+#     plt.xlabel('Actual Value')
+#     plt.ylabel('Predicted Value')
+#     plt.title('Scatter plot')
+#     plt.legend(loc='lower right')
+#     plt.show()  
+#     plt.savefig('/vc_data/users/t-zilongwang/bcnn.png') # -----(2)
