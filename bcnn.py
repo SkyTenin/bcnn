@@ -241,16 +241,16 @@ if __name__ ==  '__main__':
         valid_idx = temp_idx[int(train_val_n * 0.9):]
 
         """GAN"""
-        for generate_data_count in range(0, 900):
+        for generate_data_count in range(0, 1000):
             if (os.path.isfile("./generate_data/data/subject_"  + str(generate_data_count).zfill(3) + ".npy")) :
                 train_set.append("./generate_data/data/subject_"  + str(generate_data_count).zfill(3) + ".npy")
                 tmp_label = np.load("./generate_data/label/label_"  + str(generate_data_count).zfill(3) + ".npy")
                 train_label.append(tmp_label[0])
-        for generate_data_count in range(901, 1000):
-            if (os.path.isfile("./generate_data/data/subject_"  + str(generate_data_count).zfill(3) + ".npy")) :
-                valid_set.append("./generate_data/data/subject_"  + str(generate_data_count).zfill(3) + ".npy")
-                tmp_label = np.load("./generate_data/label/label_"  + str(generate_data_count).zfill(3) + ".npy")
-                valid_label.append(tmp_label[0])
+#         for generate_data_count in range(901, 1000):
+#             if (os.path.isfile("./generate_data/data/subject_"  + str(generate_data_count).zfill(3) + ".npy")) :
+#                 valid_set.append("./generate_data/data/subject_"  + str(generate_data_count).zfill(3) + ".npy")
+#                 tmp_label = np.load("./generate_data/label/label_"  + str(generate_data_count).zfill(3) + ".npy")
+#                 valid_label.append(tmp_label[0])
         """GAN"""
 
         test_set.append([all_df[idx] for idx in test_idx])
@@ -265,10 +265,10 @@ if __name__ ==  '__main__':
         train_set = np.array(train_set).squeeze()
         train_label = np.array(train_label).squeeze()
 
-        valid_set += [all_df[idx] for idx in valid_idx]
-        valid_label += [all_labels[idx] for idx in valid_idx]
-        # valid_set.append([all_df[idx] for idx in train_idx])
-        # valid_label.append([all_labels[idx] for idx in train_idx])
+#         valid_set += [all_df[idx] for idx in valid_idx]
+#         valid_label += [all_labels[idx] for idx in valid_idx]
+        valid_set.append([all_df[idx] for idx in valid_idx])
+        valid_label.append([all_labels[idx] for idx in valid_idx])
         val_set = np.array(valid_set).squeeze()
         val_label = np.array(valid_label).squeeze()
 
